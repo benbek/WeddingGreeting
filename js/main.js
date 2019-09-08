@@ -1,36 +1,50 @@
 "use strict";
 
-function fetchGreeting() {
-    const body = new URLSearchParams({
-        wishersNames: 'בן',
-        coupleNames: 'מאור ומאיה',
-        eventLocation: 'צל החורש מקף בית ברל',
-        eventDate: '09/09/2019'
-    });
+const WISHERS_NAMES = 'בן';
+const COUPLE_NAMES = 'מאור ומאיה';
+const EVENT_LOCATION = 'צל החורש בית ברל';
+const EVENT_DATE = '9/9/19';
 
-    fetch('https://www.easy2gift.co.il/umbraco/surface/Easy2GiveSurface/getGreeting', {
-        method: 'POST',
-        cache: 'no-cache',
-        referrer: 'no-referrer',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body
-    })
-    .then(response => response.json())
+const greetingParameters = {
+  wishersNames: WISHERS_NAMES,
+  coupleNames: COUPLE_NAMES,
+  eventLocation: EVENT_LOCATION,
+  eventDate: EVENT_DATE
+};
+
+let firstLoad = true;
+
+async function fetchJson(requestParams) {
+  return fetch('https://www.easy2gift.co.il/umbraco/surface/Easy2GiveSurface/getGreeting', {
+    method: 'POST',
+    cache: 'no-cache',
+    referrer: 'no-referrer',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: new URLSearchParams(requestParams)
+  })
+  .then(response => response.json());
+}
+
+function writeGreeting(heading, textArr) {
+  const titleElement = document.querySelector('.text-container .head');
+  titleElement.innerText = heading;
+  titleElement.nextElementSibling.innerHTML = textArr.join('<br />');
+}
+
+document.querySelector('.card').addEventListener('click', function () {
+  fetchJson(greetingParameters)
     .then(data => {
-            const text = data.jsonData;
-            const heading = text.shift();
-            writeGreeting(heading, text)
+      const text = data.jsonData;
+      const heading = text.shift();
+      writeGreeting(heading, text);
     });
-}
 
-function writeGreeting(heading, body) {
-    const titleElement = document.querySelector('.text-container .head');
-    titleElement.innerText = heading;
-    titleElement.nextElementSibling.innerHTML = body.join('<br />');
-}
+  // Show temporary 'loading' message on consecutive clicks
+  if (!firstLoad) {
+    writeGreeting('לא מרוצים?', ['הנה עוד ברכה מגיעה...'])
+  }
 
-document.addEventListener('click', function () {
-    fetchGreeting();
+  firstLoad = false;
 });

@@ -1,4 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Nobile:400italic,700italic);
+@font-face {
+  font-family: "Dana";
+  src: url("../fonts/DanaYadAlefAlefAlef-Normal.woff") format("woff");
+}
 html, body {
   overflow: hidden;
   background-color: #bf737d;
@@ -13,74 +17,64 @@ html, body {
   border: 10px solid #73BFB5;
   margin: 50px auto 0 auto;
   transform: scaleX(-1);
-  box-shadow: inset 10px 0px 15px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 10px 0 15px 0 rgba(0, 0, 0, 0.1);
   background-color: #e6f0e6;
 }
-
 .card .text-container {
+  direction: rtl;
+  overflow-y: auto;
   transform: scaleX(-1);
   width: 80%;
   height: 80%;
   margin: auto;
+  font-family: "Dana", Verdana, Arial, helvetica, sans-serif;
 }
-
-.strikethrough {
-  text-decoration: line-through;
-}
-
-.card .text-container #head {
-  font-family: "Nobile", sans-serif;
+.card .text-container .head {
   font-size: 1.5em;
-  margin: 60px auto 60px auto;
+  margin: 35px auto 60px auto;
 }
-
-.card p {
-  font-size: 1.1em;
-  line-height: 1.4;
-  font-family: "Nobile";
+.card .text-container p {
+  font-size: 1.3em;
+  line-height: 1.3;
   color: #331717;
   font-style: italic;
   text-align: center;
-  margin: 30px auto 0px auto;
+  margin: 30px auto 0 auto;
 }
-
 .card .front {
   position: absolute;
   z-index: 2;
   width: 100%;
   height: 100%;
-  margin: -10px 0px 0px -10px;
+  margin: -10px 0 0 -10px;
   border: 10px solid #73BFB5;
   backface-visibility: hidden;
   background-color: #73a3bf;
   background-size: contain;
   transform-style: preserve-3d;
-  transform-origin: 0% 50%;
+  transform-origin: 0 50%;
   transform: perspective(800px) rotateY(0deg);
   transition: all 0.8s ease-in-out;
 }
-
 .card:hover .front {
   transform: perspective(800px) rotateY(-170deg);
   background-color: #41718d;
 }
-
 .card:hover .back {
   transform: perspective(800px) rotateY(-170deg);
   box-shadow: 7px 0 5px 0 rgba(0, 0, 0, 0.3), inset 2px 0 15px 0 rgba(0, 0, 0, 0.1);
   background-color: #d2dcd2;
 }
-
 .card .back {
   position: absolute;
   width: 100%;
   height: 100%;
   border: 10px solid #73BFB5;
-  margin: -10px 0px 0px -10px;
+  margin: -10px 0 0 -10px;
   backface-visibility: visible;
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
   transform-style: preserve-3d;
-  transform-origin: 0% 50%;
+  transform-origin: 0 50%;
   transform: perspective(800px) rotateY(0deg);
   transition: all 0.8s ease-in-out;
   background-color: #e6f0e6;
@@ -93,7 +87,6 @@ html, body {
   height: 48%;
   top: 25%;
   left: 18%;
-  /* transform: rotateZ(45deg); */
 }
 
 .cover-shape-large .shape-block, .cover-shape-large .shape-diamond {
@@ -116,17 +109,7 @@ html, body {
   border-radius: 50px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
 }
-
-.shape-diamond {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: white;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-  transform: rotateZ(45deg);
-}
-
-.heart {
+.shape-block .heart {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -135,6 +118,15 @@ html, body {
   font-size: 120px;
   animation: pulse 1s ease infinite;
   backface-visibility: hidden;
+}
+
+.shape-diamond {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  transform: rotateZ(45deg);
 }
 
 @keyframes pulse {
