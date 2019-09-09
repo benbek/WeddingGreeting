@@ -34,6 +34,8 @@ function writeGreeting(heading, textArr) {
 }
 
 document.querySelector('.card').addEventListener('click', function () {
+  document.querySelector('.cta').classList.add('fade-all');
+
   fetchJson(greetingParameters)
     .then(data => {
       const text = data.jsonData;

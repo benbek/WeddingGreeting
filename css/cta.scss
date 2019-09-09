@@ -1,0 +1,47 @@
+.cta {
+  display: flex;
+  justify-content: center;
+
+  &.fade-all {
+    opacity: 0;
+    transition: opacity 2s ease-out;
+  }
+
+  .arrow {
+    width: 30px;
+    height: 30px;
+    border: 5px solid;
+    border-color: #73a3bf transparent transparent #73a3bf;
+    transform: rotate(-135deg);
+  }
+
+  .arrow-sliding {
+    position: absolute;
+    opacity: 0;
+    animation: slide 3s linear infinite;
+
+    &--delay-1 {
+      animation-delay: 1s;
+    }
+
+    &--delay-2 {
+      animation-delay: 2s;
+    }
+
+    @keyframes slide {
+        0% { opacity:0; transform: translateY(3vw); }
+       20% { opacity:1; transform: translateY(1vw); }
+       80% { opacity:1; transform: translateY(-7vw); }
+      100% { opacity:0; transform: translateY(-10vw); }
+    }
+
+    @media screen and (min-width: 960px) {
+      @keyframes slide {
+          0% { opacity:0; transform: translateY(3vw); }
+         20% { opacity:1; transform: translateY(1vw); }
+         80% { opacity:1; transform: translateY(-1vw); }
+        100% { opacity:0; transform: translateY(-3vw); }
+      }
+    }
+  }
+}

@@ -24,8 +24,10 @@ html, body {
     overflow-y: auto;
     transform: scaleX(-1);
     width: 80%;
-    height: 80%;
+    height: 90%;
     margin: auto;
+    padding-left: 10%;
+    padding-right: 10%;
 
     font-family: $font;
 
@@ -52,7 +54,7 @@ html, body {
     margin: -10px 0 0 -10px;
     border: 10px solid $border-color;
     backface-visibility: hidden;
-    background-color: rgb(115, 163, 191);
+    background-color: #73a3bf;
     background-size: contain;
     transform-style: preserve-3d;
     transform-origin: 0 50%;
@@ -127,6 +129,12 @@ html, body {
       top: 0.05em;
       left: 0.15em;
     }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
   }
 }
 
@@ -137,10 +145,4 @@ html, body {
   background-color: white;
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
   transform: rotateZ(45deg);
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
 }
